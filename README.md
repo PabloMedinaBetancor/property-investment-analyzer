@@ -1,5 +1,7 @@
 # Property Investment Analyzer
 
+**Try it:** https://pablomedinabetancor.github.io/property-investment-analyzer/ (nothing to install; it runs in your browser).
+
 A browser app that works out whether a rental property pays. You enter one property: the price, the purchase taxes and
 costs, any renovation, the mortgage, the rent, vacancy, running costs, income tax, how long you hold it and what you sell it
 for. It returns the cash flow year by year, the usual investor metrics, the loan schedule, which assumptions move the result
