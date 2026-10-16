@@ -1,0 +1,451 @@
+{
+ "spain": [
+  {
+   "name": "carry used the next year",
+   "income": [
+    10000,
+    10000,
+    10000
+   ],
+   "interest": [
+    9000,
+    2000,
+    2000
+   ],
+   "repairs": [
+    2000,
+    500,
+    500
+   ],
+   "other_deductible": [
+    1500,
+    1500,
+    1500
+   ],
+   "amortisation_per_year": 2000,
+   "amortisation_basis": 60000,
+   "marginal": 0.37,
+   "reduction": 0.5,
+   "offset_other_income": true,
+   "tax": [
+    -1295.0,
+    555.0,
+    740.0
+   ],
+   "amortisation": [
+    2000,
+    2000,
+    2000
+   ],
+   "amortisation_taken": 6000.0,
+   "carry_after": [
+    [
+     [
+      1,
+      1000.0
+     ]
+    ],
+    [],
+    []
+   ]
+  },
+  {
+   "name": "carry expires after 4 years",
+   "income": [
+    6000,
+    6000,
+    6000,
+    6000,
+    6000,
+    6000,
+    6000,
+    6000
+   ],
+   "interest": [
+    40000,
+    500,
+    500,
+    500,
+    500,
+    500,
+    0,
+    0
+   ],
+   "repairs": [
+    500,
+    500,
+    500,
+    500,
+    500,
+    500,
+    500,
+    500
+   ],
+   "other_deductible": [
+    800,
+    800,
+    800,
+    800,
+    800,
+    800,
+    800,
+    800
+   ],
+   "amortisation_per_year": 1500,
+   "amortisation_basis": 45000,
+   "marginal": 0.3,
+   "reduction": 0.6,
+   "offset_other_income": false,
+   "tax": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    384.0,
+    384.0
+   ],
+   "amortisation": [
+    1500,
+    1500,
+    1500,
+    1500,
+    1500,
+    1500,
+    1500,
+    1500
+   ],
+   "amortisation_taken": 12000.0,
+   "carry_after": [
+    [
+     [
+      1,
+      34500.0
+     ]
+    ],
+    [
+     [
+      1,
+      28500.0
+     ],
+     [
+      2,
+      1000.0
+     ]
+    ],
+    [
+     [
+      1,
+      22500.0
+     ],
+     [
+      2,
+      1000.0
+     ],
+     [
+      3,
+      1000.0
+     ]
+    ],
+    [
+     [
+      1,
+      16500.0
+     ],
+     [
+      2,
+      1000.0
+     ],
+     [
+      3,
+      1000.0
+     ],
+     [
+      4,
+      1000.0
+     ]
+    ],
+    [
+     [
+      1,
+      10500.0
+     ],
+     [
+      2,
+      1000.0
+     ],
+     [
+      3,
+      1000.0
+     ],
+     [
+      4,
+      1000.0
+     ],
+     [
+      5,
+      1000.0
+     ]
+    ],
+    [],
+    [],
+    []
+   ]
+  },
+  {
+   "name": "negative net offsets other income",
+   "income": [
+    8000,
+    8000
+   ],
+   "interest": [
+    3000,
+    3000
+   ],
+   "repairs": [
+    400,
+    400
+   ],
+   "other_deductible": [
+    4000,
+    4000
+   ],
+   "amortisation_per_year": 3000,
+   "amortisation_basis": 90000,
+   "marginal": 0.45,
+   "reduction": 0.5,
+   "offset_other_income": true,
+   "tax": [
+    -1080.0,
+    -1080.0
+   ],
+   "amortisation": [
+    3000,
+    3000
+   ],
+   "amortisation_taken": 6000.0,
+   "carry_after": [
+    [],
+    []
+   ]
+  },
+  {
+   "name": "negative net without offset gives 0",
+   "income": [
+    8000,
+    8000
+   ],
+   "interest": [
+    3000,
+    3000
+   ],
+   "repairs": [
+    400,
+    400
+   ],
+   "other_deductible": [
+    4000,
+    4000
+   ],
+   "amortisation_per_year": 3000,
+   "amortisation_basis": 90000,
+   "marginal": 0.45,
+   "reduction": 0.5,
+   "offset_other_income": false,
+   "tax": [
+    0.0,
+    0.0
+   ],
+   "amortisation": [
+    3000,
+    3000
+   ],
+   "amortisation_taken": 6000.0,
+   "carry_after": [
+    [],
+    []
+   ]
+  },
+  {
+   "name": "amortisation stops at the construction basis",
+   "income": [
+    12000,
+    12000,
+    12000,
+    12000,
+    12000
+   ],
+   "interest": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "repairs": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "other_deductible": [
+    1000,
+    1000,
+    1000,
+    1000,
+    1000
+   ],
+   "amortisation_per_year": 3000,
+   "amortisation_basis": 10000,
+   "marginal": 0.3,
+   "reduction": 0.0,
+   "offset_other_income": true,
+   "tax": [
+    2400.0,
+    2400.0,
+    2400.0,
+    3000.0,
+    3300.0
+   ],
+   "amortisation": [
+    3000,
+    3000,
+    3000,
+    1000.0,
+    0.0
+   ],
+   "amortisation_taken": 10000.0,
+   "carry_after": [
+    [],
+    [],
+    [],
+    [],
+    []
+   ]
+  }
+ ],
+ "generic": [
+  {
+   "name": "interest deductible, a loss offset",
+   "collected": [
+    20000,
+    24000
+   ],
+   "interest": [
+    15000,
+    12000
+   ],
+   "opex": [
+    6000,
+    6000
+   ],
+   "depreciation_per_year": 5000,
+   "depreciation_years": 27.5,
+   "rate": 0.24,
+   "interest_deductible": true,
+   "offset_losses": true,
+   "tax": [
+    -1440.0,
+    240.0
+   ],
+   "depreciation": [
+    5000.0,
+    5000.0
+   ],
+   "depreciation_taken": 10000.0
+  },
+  {
+   "name": "interest not deductible, a loss not offset",
+   "collected": [
+    10000,
+    20000
+   ],
+   "interest": [
+    9000,
+    9000
+   ],
+   "opex": [
+    6000,
+    6000
+   ],
+   "depreciation_per_year": 5000,
+   "depreciation_years": 27.5,
+   "rate": 0.24,
+   "interest_deductible": false,
+   "offset_losses": false,
+   "tax": [
+    0.0,
+    2160.0
+   ],
+   "depreciation": [
+    5000.0,
+    5000.0
+   ],
+   "depreciation_taken": 10000.0
+  },
+  {
+   "name": "depreciation tail: half a year in year 3, none after",
+   "collected": [
+    30000,
+    30000,
+    30000,
+    30000
+   ],
+   "interest": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "opex": [
+    5000,
+    5000,
+    5000,
+    5000
+   ],
+   "depreciation_per_year": 8000,
+   "depreciation_years": 2.5,
+   "rate": 0.24,
+   "interest_deductible": true,
+   "offset_losses": true,
+   "tax": [
+    4080.0,
+    4080.0,
+    5040.0,
+    6000.0
+   ],
+   "depreciation": [
+    8000.0,
+    8000.0,
+    4000.0,
+    0.0
+   ],
+   "depreciation_taken": 20000.0
+  }
+ ],
+ "generic_exit": [
+  {
+   "gain": -10000,
+   "depreciation_taken": 50000,
+   "recapture_rate": 0.25,
+   "capital_gains_rate": 0.15,
+   "exit_tax": 0.0
+  },
+  {
+   "gain": 30000,
+   "depreciation_taken": 50000,
+   "recapture_rate": 0.25,
+   "capital_gains_rate": 0.15,
+   "exit_tax": 7500.0
+  },
+  {
+   "gain": 80000,
+   "depreciation_taken": 50000,
+   "recapture_rate": 0.25,
+   "capital_gains_rate": 0.15,
+   "exit_tax": 17000.0
+  }
+ ]
+}

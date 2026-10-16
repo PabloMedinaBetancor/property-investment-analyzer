@@ -1,0 +1,28 @@
+{
+ "note": "Profiles for markets other than Spain. Every default is illustrative and editable: there is no single US or 'generic' rate (transfer taxes, property tax and closing costs vary by state, county and city). Only the US depreciation period and the recapture cap have a source. Rates are decimals.",
+ "sources": {
+  "irs-pub-527": {"title": "IRS Publication 527, Residential Rental Property (2025)", "url": "https://www.irs.gov/publications/p527", "checked": "2026-10-16", "official": true, "supports": "residential rental property: MACRS GDS 27.5 years; mid-month convention; land is not depreciable"},
+  "irs-topic-409": {"title": "IRS Topic 409, Capital gains and losses", "url": "https://www.irs.gov/taxtopics/tc409", "checked": "2026-10-16", "official": true, "supports": "long-term rates 0/15/20 %; unrecaptured section 1250 gain at a maximum 25 %"}
+ },
+ "schema": {
+  "currency": "ISO 4217 code",
+  "purchase": {"transfer_tax_rate": "share of price", "closing_cost_rate": "share of price (lender, title, legal)", "closing_cost_fixed": "amount", "buyer_agency_rate": "share of price"},
+  "holding": {"property_tax_rate": "share of the market value at the start of each year", "insurance_per_year": "amount", "hoa_per_month": "amount", "other_fixed_per_year": "amount"},
+  "income_tax": {"on": "bool", "rate": "flat rate on net rental income", "interest_deductible": "bool", "depreciation_years": "0 = off; straight line, full years", "building_share": "share of the cost that is building (land is not depreciated)", "offset_losses": "bool: a net loss saves tax at the same rate"},
+  "exit": {"selling_cost_rate": "share of sale price", "capital_gains_rate": "flat", "depreciation_recapture_rate": "flat, on the depreciation taken (capped by the gain)"}
+ },
+ "profiles": [
+  {"code": "generic", "label": {"en": "Generic market", "es": "Mercado genérico"}, "currency": "EUR",
+   "purchase": {"transfer_tax_rate": 0.0, "closing_cost_rate": 0.0, "closing_cost_fixed": 0, "buyer_agency_rate": 0.0},
+   "holding": {"property_tax_rate": 0.0, "insurance_per_year": 0, "hoa_per_month": 0, "other_fixed_per_year": 0},
+   "income_tax": {"on": false, "rate": 0.0, "interest_deductible": true, "depreciation_years": 0, "building_share": 0.0, "offset_losses": false},
+   "exit": {"selling_cost_rate": 0.0, "capital_gains_rate": 0.0, "depreciation_recapture_rate": 0.0}},
+  {"code": "us-example", "label": {"en": "United States (example values)", "es": "Estados Unidos (valores de ejemplo)"}, "currency": "USD",
+   "purchase": {"transfer_tax_rate": 0.002, "closing_cost_rate": 0.025, "closing_cost_fixed": 0, "buyer_agency_rate": 0.0},
+   "holding": {"property_tax_rate": 0.011, "insurance_per_year": 1500, "hoa_per_month": 0, "other_fixed_per_year": 0},
+   "income_tax": {"on": true, "rate": 0.24, "interest_deductible": true, "depreciation_years": 27.5, "building_share": 0.8, "offset_losses": true,
+                  "src": "27.5 years: irs-pub-527; land not depreciable: irs-pub-527 ('You can't depreciate the cost of land'); full-year straight line instead of the mid-month convention is a simplification (the first and last years differ slightly)"},
+   "exit": {"selling_cost_rate": 0.06, "capital_gains_rate": 0.15, "depreciation_recapture_rate": 0.25, "src": "15 % is the middle long-term bracket and 25 % the cap on unrecaptured section 1250 gain (irs-topic-409); state taxes not included"},
+   "note": "passive-activity loss limits, state income tax and the 3.8 % net investment income tax are not modelled"}
+ ]
+}

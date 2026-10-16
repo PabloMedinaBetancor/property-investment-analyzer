@@ -1,0 +1,702 @@
+{
+ "profile": "es",
+ "label": {
+  "en": "Spain (2026 rules)",
+  "es": "España (normativa 2026)"
+ },
+ "rates_as_of": "2026-10-16",
+ "note": "Rates are decimals. Every figure cites a key of `sources` (title and URL) and the article. verified=false marks a figure from a secondary, non-official source. Taxes are on the price; Spanish law taxes the higher of price and the Catastro reference value (RDL 1/1993 art. 10.2, rdl-1-1993-itpajd): the UI offers a 'taxable value' override.",
+ "sources": {
+  "hacienda-autonomica-2026-cap4": {
+   "title": "Ministerio de Hacienda, Tributación Autonómica. Medidas 2026, cap. IV (medidas vigentes por CA)",
+   "url": "https://www.hacienda.gob.es/sgfal/financiacionterritorial/autonomica/capitulo-iv-tributacion-autonomica-2026.pdf",
+   "checked": "2026-10-16",
+   "official": true
+  },
+  "hacienda-autonomica-2026-cap1": {
+   "title": "Ministerio de Hacienda, Tributación Autonómica. Medidas 2026, cap. I (resumen y anexos V-VI)",
+   "url": "https://www.hacienda.gob.es/sgfal/financiacionterritorial/autonomica/capitulo-i-tributacion-autonomica-2026.pdf",
+   "checked": "2026-10-16",
+   "official": true
+  },
+  "rdl-1-1993-itpajd": {
+   "title": "RDL 1/1993, TR Ley ITPAJD (BOE consolidado 21/03/2026)",
+   "url": "https://www.boe.es/buscar/pdf/1993/BOE-A-1993-25359-consolidado.pdf",
+   "checked": "2026-09-17",
+   "official": true
+  },
+  "ley-37-1992-iva": {
+   "title": "Ley 37/1992 del IVA (BOE consolidado 28/02/2026)",
+   "url": "https://www.boe.es/buscar/pdf/1992/BOE-A-1992-28740-consolidado.pdf",
+   "checked": "2026-09-17",
+   "official": true
+  },
+  "rd-1426-1989-arancel-notarial": {
+   "title": "RD 1426/1989, Arancel de los Notarios",
+   "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1989-28111",
+   "checked": "2026-09-17",
+   "official": true
+  },
+  "rd-1427-1989-arancel-registral": {
+   "title": "RD 1427/1989, Arancel de los Registradores",
+   "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1989-28112",
+   "checked": "2026-09-17",
+   "official": true
+  },
+  "ley-5-2019": {
+   "title": "Ley 5/2019 de contratos de crédito inmobiliario (BOE consolidado)",
+   "url": "https://www.boe.es/buscar/pdf/2019/BOE-A-2019-3814-consolidado.pdf",
+   "checked": "2026-10-16",
+   "official": true
+  },
+  "ley-35-2006-irpf": {
+   "title": "Ley 35/2006 del IRPF (BOE consolidado 09/09/2026)",
+   "url": "https://www.boe.es/buscar/pdf/2006/BOE-A-2006-20764-consolidado.pdf",
+   "checked": "2026-09-26",
+   "official": true
+  },
+  "rd-439-2007-irpf": {
+   "title": "RD 439/2007, Reglamento del IRPF (BOE consolidado 18/05/2026)",
+   "url": "https://www.boe.es/buscar/pdf/2007/BOE-A-2007-6820-consolidado.pdf",
+   "checked": "2026-09-26",
+   "official": true
+  },
+  "rdl-2-2004-haciendas-locales": {
+   "title": "RDL 2/2004, TR Ley Reguladora de las Haciendas Locales (BOE consolidado 08/09/2026)",
+   "url": "https://www.boe.es/buscar/pdf/2004/BOE-A-2004-4214-consolidado.pdf",
+   "checked": "2026-09-26",
+   "official": true
+  },
+  "ley-29-1994-lau": {
+   "title": "Ley 29/1994 de Arrendamientos Urbanos (BOE consolidado)",
+   "url": "https://www.boe.es/buscar/pdf/1994/BOE-A-1994-26003-consolidado.pdf",
+   "checked": "2026-09-20",
+   "official": true
+  },
+  "iberley-bizkaia-itp-art13": {
+   "title": "Iberley: art. 13 NF Bizkaia ITPAJD (reproducción, no oficial)",
+   "url": "https://www.iberley.es/legislacion/articulo-13-impuesto-sobre-transmisiones-patrimoniales-actos-juridicos-documentados-bizkaia",
+   "checked": "2026-10-16",
+   "official": false
+  },
+  "guiafiscal-itp-navarra": {
+   "title": "Guía Fiscal: ITP-AJD Navarra 2026 (no oficial)",
+   "url": "https://guiafiscal.es/patrimonio/itp/navarra/",
+   "checked": "2026-10-16",
+   "official": false
+  },
+  "dleg-1-2025-igic": {
+   "title": "Decreto Legislativo 1/2025, TR IGIC y AIEM (Canarias; BOC en el BOE)",
+   "url": "https://www.boe.es/buscar/doc.php?id=BOC-j-2025-90249",
+   "checked": "2026-10-01",
+   "official": true
+  },
+  "rdl-1-1993-itpajd-html": {
+   "title": "RDL 1/1993 HTML consolidado, art. 57 bis (Ceuta y Melilla)",
+   "url": "https://www.boe.es/buscar/act.php?id=BOE-A-1993-25359",
+   "checked": "2026-10-16",
+   "official": true
+  }
+ },
+ "schedule_kinds": {
+  "flat": "tax = base * rate",
+  "progressive": "brackets [{from, rate}] ascending; each slice of the base between consecutive 'from' values pays its own rate (marginal, like income tax)",
+  "band": "brackets [{from, rate}] ascending; the WHOLE base pays the rate of the bracket that contains it (a cliff at each threshold)"
+ },
+ "regions": [
+  {
+   "code": "AN",
+   "name": {
+    "es": "Andalucía",
+    "en": "Andalusia"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.07
+   },
+   "new_build_stamp": 0.012,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (art. 41 Ley 5/2021); AJD hacienda-autonomica-2026-cap4 (art. 49 Ley 5/2021)"
+  },
+  {
+   "code": "AR",
+   "name": {
+    "es": "Aragón",
+    "en": "Aragon"
+   },
+   "resale": {
+    "kind": "progressive",
+    "brackets": [
+     {
+      "from": 0,
+      "rate": 0.08
+     },
+     {
+      "from": 400000,
+      "rate": 0.085
+     },
+     {
+      "from": 450000,
+      "rate": 0.09
+     },
+     {
+      "from": 500000,
+      "rate": 0.095
+     },
+     {
+      "from": 750000,
+      "rate": 0.1
+     }
+    ]
+   },
+   "new_build_stamp": 0.015,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 Tabla 71 (art. 121-1 DLeg 1/2005); AJD hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "AS",
+   "name": {
+    "es": "Principado de Asturias",
+    "en": "Asturias"
+   },
+   "resale": {
+    "kind": "band",
+    "brackets": [
+     {
+      "from": 0,
+      "rate": 0.08
+     },
+     {
+      "from": 300000.01,
+      "rate": 0.09
+     },
+     {
+      "from": 500000.01,
+      "rate": 0.1
+     }
+    ]
+   },
+   "new_build_stamp": 0.012,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 Tabla 68 (art. 26 DLeg 2/2014: 'se aplica el tipo que resulte de la siguiente tarifa atendiendo al valor íntegro del bien'); AJD hacienda-autonomica-2026-cap4",
+   "note": "band (whole value), not progressive: read from the literal; verify against the regional agency's calculator"
+  },
+  {
+   "code": "IB",
+   "name": {
+    "es": "Illes Balears",
+    "en": "Balearic Islands"
+   },
+   "resale": {
+    "kind": "progressive",
+    "brackets": [
+     {
+      "from": 0,
+      "rate": 0.08
+     },
+     {
+      "from": 400000,
+      "rate": 0.09
+     },
+     {
+      "from": 600000,
+      "rate": 0.1
+     },
+     {
+      "from": 1000000,
+      "rate": 0.12
+     },
+     {
+      "from": 2000000,
+      "rate": 0.13
+     }
+    ]
+   },
+   "new_build_stamp": 0.015,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 Tabla 73 (art. 10.a DLeg 1/2014); AJD hacienda-autonomica-2026-cap4",
+   "note": "garages not annexed to a home have their own 8-9 % scale (not modelled)"
+  },
+  {
+   "code": "CN",
+   "name": {
+    "es": "Canarias",
+    "en": "Canary Islands"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.065
+   },
+   "new_build_vat": 0.07,
+   "new_build_vat_name": "IGIC",
+   "new_build_stamp": 0.01,
+   "verified": true,
+   "vat_verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (art. 31 DLeg 1/2009): resale 6.5 %; AJD 0.75 % general and 1 % for notarial documents of operations subject to IGIC or VAT, i.e. new build (hacienda-autonomica-2026-cap4); IGIC on new homes: general 7 % for any home not covered by the reduced cases (dleg-1-2025-igic and 'Cinco': 'tributarán ... al tipo impositivo general')",
+   "reduced_cases": [
+    "ITP 5 %: main home, buyer owns no other home, value ≤ 200 000 € (hacienda-autonomica-2026-cap4)",
+    "ITP 1 %: main home of a large family or a person with disability ≥ 65 %, income limits (hacienda-autonomica-2026-cap4)",
+    "IGIC 5 %: main home ≤ 150 000 € (225 000/300 000 large families), buyer owns no other home (dleg-1-2025-igic)",
+    "IGIC 3 %: as 5 % plus buyer ≤ 35, large family, disability ≥ 65 %, single parent, gender-violence victim or income ≤ 24 000 € (dleg-1-2025-igic)",
+    "IGIC 0 %: protected housing delivered by its developer (dleg-1-2025-igic)"
+   ],
+   "note": "an investor buying to let pays the general rates: 6.5 % ITP (resale) or 7 % IGIC + 1 % AJD (new build)"
+  },
+  {
+   "code": "CB",
+   "name": {
+    "es": "Cantabria",
+    "en": "Cantabria"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.09
+   },
+   "new_build_stamp": 0.015,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (art. 9.1 DLeg 62/2008, Ley 3/2023); AJD hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "CM",
+   "name": {
+    "es": "Castilla-La Mancha",
+    "en": "Castilla-La Mancha"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.09
+   },
+   "new_build_stamp": 0.015,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (art. 19.1 Ley 8/2013); AJD hacienda-autonomica-2026-cap4",
+   "note": "Ley 1/2026 (in force 31/03/2026) changed reduced cases; general rate unchanged in hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "CL",
+   "name": {
+    "es": "Castilla y León",
+    "en": "Castile and León"
+   },
+   "resale": {
+    "kind": "progressive",
+    "brackets": [
+     {
+      "from": 0,
+      "rate": 0.08
+     },
+     {
+      "from": 250000,
+      "rate": 0.1
+     }
+    ]
+   },
+   "new_build_stamp": 0.015,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (arts. 24.1.a and 25.1 DLeg 1/2013); AJD hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "CT",
+   "name": {
+    "es": "Cataluña",
+    "en": "Catalonia"
+   },
+   "resale": {
+    "kind": "progressive",
+    "brackets": [
+     {
+      "from": 0,
+      "rate": 0.1
+     },
+     {
+      "from": 600000,
+      "rate": 0.11
+     },
+     {
+      "from": 900000,
+      "rate": 0.12
+     },
+     {
+      "from": 1500000,
+      "rate": 0.13
+     }
+    ]
+   },
+   "new_build_stamp": 0.015,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 Tabla 66 (art. 641-1.1 Codi tributari, DL 5/2025); AJD hacienda-autonomica-2026-cap4",
+   "note": "special higher rates for large holders exist (not modelled)"
+  },
+  {
+   "code": "EX",
+   "name": {
+    "es": "Extremadura",
+    "en": "Extremadura"
+   },
+   "resale": {
+    "kind": "progressive",
+    "brackets": [
+     {
+      "from": 0,
+      "rate": 0.08
+     },
+     {
+      "from": 360000,
+      "rate": 0.1
+     },
+     {
+      "from": 600000,
+      "rate": 0.11
+     }
+    ]
+   },
+   "new_build_stamp": 0.015,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 Tabla 72 (art. 36 DLeg 1/2018: 'suma de las cuotas ... de cada tramo'); AJD hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "GA",
+   "name": {
+    "es": "Galicia",
+    "en": "Galicia"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.08
+   },
+   "new_build_stamp": 0.015,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (art. 14.Uno DLeg 1/2011, Ley 10/2023); AJD hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "MD",
+   "name": {
+    "es": "Comunidad de Madrid",
+    "en": "Madrid"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.06
+   },
+   "new_build_stamp": 0.0075,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (art. 28.1 DLeg 1/2010); AJD hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "MC",
+   "name": {
+    "es": "Región de Murcia",
+    "en": "Murcia"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.0775
+   },
+   "new_build_stamp": 0.015,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (art. 6.1 DLeg 1/2010, Ley 3/2025, in force 25/07/2025); AJD hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "RI",
+   "name": {
+    "es": "La Rioja",
+    "en": "La Rioja"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.07
+   },
+   "new_build_stamp": 0.01,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (art. 44.1 Ley 10/2017); AJD hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "VC",
+   "name": {
+    "es": "Comunitat Valenciana",
+    "en": "Valencia"
+   },
+   "resale": {
+    "kind": "band",
+    "brackets": [
+     {
+      "from": 0,
+      "rate": 0.09
+     },
+     {
+      "from": 1000000.01,
+      "rate": 0.11
+     }
+    ]
+   },
+   "new_build_stamp": 0.014,
+   "verified": true,
+   "src": "hacienda-autonomica-2026-cap4 (art. 13.Uno Ley 13/1997, Ley 5/2025): 9 % since 01/06/2026 (10 % until 31/05/2026); 11 % when the value exceeds 1 M€; AJD hacienda-autonomica-2026-cap4"
+  },
+  {
+   "code": "NC",
+   "name": {
+    "es": "Navarra (régimen foral)",
+    "en": "Navarre (foral regime)"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.06
+   },
+   "new_build_stamp": 0.005,
+   "verified": false,
+   "src": "guiafiscal-itp-navarra (secondary): TPO 6 %, AJD 0.5 % (DFL 129/1999)"
+  },
+  {
+   "code": "PV",
+   "name": {
+    "es": "País Vasco (régimen foral, regla de Bizkaia)",
+    "en": "Basque Country (foral regime, Bizkaia rule)"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.04
+   },
+   "new_build_stamp": 0.005,
+   "verified": false,
+   "src": "iberley-bizkaia-itp-art13 (secondary reproduction of NF Bizkaia 1/2011 art. 13): housing 4 % if the buyer owns at most 5 homes (>50 % each), else 6 %; other real estate 7 %. Álava and Gipuzkoa not modelled; AJD 0.5 % assumed (state default rdl-1-1993-itpajd)"
+  },
+  {
+   "code": "CE",
+   "name": {
+    "es": "Ceuta",
+    "en": "Ceuta"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.03
+   },
+   "new_build_vat": null,
+   "new_build_vat_name": "IPSI",
+   "new_build_stamp": 0.0025,
+   "verified": true,
+   "src": "state default 6 % TPO (rdl-1-1993-itpajd) and 0.5 % AJD (rdl-1-1993-itpajd), each with the 50 % bonus of art. 57 bis.1 and .3.a (rdl-1-1993-itpajd-html); IPSI on new build not modelled: the user enters it"
+  },
+  {
+   "code": "ML",
+   "name": {
+    "es": "Melilla",
+    "en": "Melilla"
+   },
+   "resale": {
+    "kind": "flat",
+    "rate": 0.03
+   },
+   "new_build_vat": null,
+   "new_build_vat_name": "IPSI",
+   "new_build_stamp": 0.0025,
+   "verified": true,
+   "src": "state default 6 % TPO (rdl-1-1993-itpajd) and 0.5 % AJD (rdl-1-1993-itpajd), each with the 50 % bonus of art. 57 bis.1 and .3.a (rdl-1-1993-itpajd-html); IPSI on new build not modelled: the user enters it"
+  }
+ ],
+ "new_build_vat_default": {
+  "rate": 0.1,
+  "protected_rate": 0.04,
+  "src": "ley-37-1992-iva art. 91.Uno.1.7º (10 %: 'edificios ... aptos para su utilización como viviendas, incluidas las plazas de garaje, con un máximo de dos unidades'); ley-37-1992-iva art. 91.Dos (4 %: VPO de régimen especial o promoción pública)"
+ },
+ "reduced_cases_note": "Every common-regime region has reduced rates or bonuses for a main home bought by some groups (young, disabled, large families, low income, victims) and most for protected housing (hacienda-autonomica-2026-cap1). An investor buying to let rarely qualifies; the UI offers 'my rate is different' (a manual rate) instead of encoding each region's conditions.",
+ "fees": {
+  "fee_vat": {
+   "rate": 0.21,
+   "src": "ley-37-1992-iva art. 90.Uno (21 %)"
+  },
+  "notary_purchase": {
+   "kind": "scale_progressive",
+   "base_fee_upto": 6010.12,
+   "base_fee": 90.151816,
+   "brackets": [
+    {
+     "from": 6010.12,
+     "per_mille": 4.5
+    },
+    {
+     "from": 30050.61,
+     "per_mille": 1.5
+    },
+    {
+     "from": 60101.21,
+     "per_mille": 1.0
+    },
+    {
+     "from": 150253.03,
+     "per_mille": 0.5
+    },
+    {
+     "from": 601012.1,
+     "per_mille": 0.3
+    }
+   ],
+   "cap_base": 6010121.04,
+   "extras_default": 300,
+   "src": "rd-1426-1989-arancel-notarial (RD 1426/1989, Número 2)",
+   "note": "scale = the 'derechos' only; real invoices add folios, copies and supplements (extras_default is illustrative) and 21 % VAT"
+  },
+  "registry_purchase": {
+   "kind": "scale_progressive",
+   "base_fee_upto": 6010.12,
+   "base_fee": 24.040484,
+   "brackets": [
+    {
+     "from": 6010.12,
+     "per_mille": 1.75
+    },
+    {
+     "from": 30050.61,
+     "per_mille": 1.25
+    },
+    {
+     "from": 60101.21,
+     "per_mille": 0.75
+    },
+    {
+     "from": 150253.03,
+     "per_mille": 0.3
+    },
+    {
+     "from": 601012.1,
+     "per_mille": 0.2
+    }
+   ],
+   "min": 24.040484,
+   "max": 2181.673939,
+   "rebate": 0.05,
+   "src": "rd-1427-1989-arancel-registral (RD 1427/1989, Número 2: scale, min/max, 5 % rebate)"
+  },
+  "gestoria_default": {
+   "amount": 350,
+   "illustrative": true,
+   "note": "no official tariff; market range ~300-600 € including VAT; input amounts are totals including VAT"
+  },
+  "valuation_default": {
+   "amount": 400,
+   "illustrative": true,
+   "note": "appraisal (tasación), paid by the borrower (ley-5-2019 art. 14.1.e.i); market range ~250-600 €; total including VAT"
+  },
+  "buyer_agency_default": {
+   "rate": 0.0,
+   "illustrative": true,
+   "note": "in Spain the seller usually pays the agency (custom, not law); configurable"
+  },
+  "mortgage_costs_payer": {
+   "src": "ley-5-2019 (Ley 5/2019 art. 14.1.e)",
+   "rule": "borrower: valuation and the copies he asks for; lender: notary of the mortgage deed, registry of the guarantee, gestoría; AJD of the mortgage by tax law (RDL 17/2018: the lender)"
+  }
+ },
+ "holding": {
+  "ibi": {
+   "rate_min": 0.004,
+   "rate_max": 0.011,
+   "base": "valor catastral (not the price)",
+   "src": "rdl-2-2004-haciendas-locales (TRLRHL art. 72.1)",
+   "note": "the UI asks the annual IBI amount (from the owner's receipt); the band only validates"
+  },
+  "community_default": {
+   "amount_per_year": 600,
+   "illustrative": true
+  },
+  "insurance_default": {
+   "amount_per_year": 250,
+   "illustrative": true
+  },
+  "letting_fees_payer": {
+   "rule": "landlord pays agency management and contract formalisation fees",
+   "src": "ley-29-1994-lau (LAU art. 20.1, as amended by Ley 12/2023)"
+  }
+ },
+ "mortgage": {
+  "variable_rate_floor": {
+   "rule": "variable interest never negative; no floor clause above 0",
+   "src": "ley-5-2019 (Ley 5/2019 art. 21.3-4)"
+  }
+ },
+ "income_tax": {
+  "regime": "IRPF, residents, capital inmobiliario (simplified)",
+  "deductible_capped": {
+   "items": [
+    "interest and financing costs",
+    "repairs and maintenance"
+   ],
+   "cap": "gross rent of the year, per property",
+   "carry_forward_years": 4,
+   "src": "ley-35-2006-irpf (LIRPF art. 23.1.a.1º)"
+  },
+  "deductible_uncapped": [
+   "IBI and other local taxes",
+   "community",
+   "insurance",
+   "management and services by third parties",
+   "amortisation"
+  ],
+  "amortisation": {
+   "rate": 0.03,
+   "base": "acquisition cost (price + purchase costs + improvements) times the construction share (excluding land)",
+   "src": "rd-439-2007-irpf (RIRPF art. 14: 3 % of the greater of acquisition cost or cadastral value, excluding land; land share by the cadastral ratio)"
+  },
+  "rent_reduction_options": [
+   {
+    "rate": 0.5,
+    "label": "general case (new contracts)",
+    "src": "ley-35-2006-irpf art. 23.2.d"
+   },
+   {
+    "rate": 0.6,
+    "label": "renovation in the 2 years before the contract",
+    "src": "ley-35-2006-irpf art. 23.2.c"
+   },
+   {
+    "rate": 0.7,
+    "label": "young tenant 18-35 in a stressed zone, or social/protected rent",
+    "src": "ley-35-2006-irpf art. 23.2.b"
+   },
+   {
+    "rate": 0.9,
+    "label": "new contract in a stressed zone lowering the rent ≥5 %",
+    "src": "ley-35-2006-irpf art. 23.2.a"
+   },
+   {
+    "rate": 0.0,
+    "label": "none (holiday lets, non-residents, companies)"
+   }
+  ],
+  "rent_reduction_note": "contracts signed before Ley 12/2023 entered into force (26/05/2023) keep the art. 23.2 reduction as worded on 31/12/2021 (60 %): ley-35-2006-irpf (DT 38ª); the new 50/60/70/90 % apply to contracts from then on (ley-35-2006-irpf)",
+  "marginal_rate_default": {
+   "rate": 0.37,
+   "illustrative": true,
+   "note": "user's combined state+regional marginal rate; depends on all the taxpayer's income and region"
+  },
+  "capital_gains_scale": {
+   "kind": "progressive",
+   "brackets": [
+    {
+     "from": 0,
+     "rate": 0.19
+    },
+    {
+     "from": 6000,
+     "rate": 0.21
+    },
+    {
+     "from": 50000,
+     "rate": 0.23
+    },
+    {
+     "from": 200000,
+     "rate": 0.27
+    },
+    {
+     "from": 300000,
+     "rate": 0.3
+    }
+   ],
+   "src": "ley-35-2006-irpf art. 66.2 combined scale (state art. 66.1 + regional art. 76: 9,5/10,5/11,5/13,5/15 each)",
+   "note": "savings base; the model assumes no other savings income that year"
+  },
+  "municipal_gain_tax": {
+   "note": "IIVTNU ('plusvalía municipal') on sale: municipal; the UI takes an amount (default 0)"
+  }
+ }
+}

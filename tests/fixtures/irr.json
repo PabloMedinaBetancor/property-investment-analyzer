@@ -1,0 +1,155 @@
+[
+ {
+  "flows": [
+   -100,
+   110
+  ],
+  "irr": {
+   "kind": "Unique",
+   "rate": 0.1
+  },
+  "npv_at_10pct": -1.4210854715202004e-14,
+  "note": "one period: 10 %"
+ },
+ {
+  "flows": [
+   -1000,
+   300,
+   400,
+   500
+  ],
+  "irr": {
+   "kind": "Unique",
+   "rate": 0.088963394693
+  },
+  "npv_at_10pct": -21.0368144252443,
+  "note": "ordinary"
+ },
+ {
+  "flows": [
+   -100,
+   230,
+   -132
+  ],
+  "irr": {
+   "kind": "Multiple",
+   "rates": [
+    0.1,
+    0.2
+   ]
+  },
+  "npv_at_10pct": -1.4210854715202004e-14,
+  "note": "two sign changes: roots 10 % and 20 %"
+ },
+ {
+  "flows": [
+   100,
+   50
+  ],
+  "irr": {
+   "kind": "None",
+   "reason": "NoSignChange"
+  },
+  "npv_at_10pct": 145.45454545454544,
+  "note": "no sign change (all positive)"
+ },
+ {
+  "flows": [
+   -100,
+   -50
+  ],
+  "irr": {
+   "kind": "None",
+   "reason": "NoSignChange"
+  },
+  "npv_at_10pct": -145.45454545454544,
+  "note": "no sign change (all negative)"
+ },
+ {
+  "flows": [
+   -1000,
+   0,
+   0,
+   0,
+   0,
+   1000
+  ],
+  "irr": {
+   "kind": "Unique",
+   "rate": 0.0
+  },
+  "npv_at_10pct": -379.07867694084507,
+  "note": "zero return"
+ },
+ {
+  "flows": [
+   -1000,
+   100,
+   100,
+   100,
+   100,
+   100,
+   100,
+   100,
+   100,
+   100,
+   1100
+  ],
+  "irr": {
+   "kind": "Unique",
+   "rate": 0.1
+  },
+  "npv_at_10pct": -4.547473508864641e-13,
+  "note": "bond at par: exactly 10 %"
+ },
+ {
+  "flows": [
+   -100,
+   1000
+  ],
+  "irr": {
+   "kind": "Unique",
+   "rate": 9.0
+  },
+  "npv_at_10pct": 809.090909090909,
+  "note": "900 %: inside the scan range"
+ },
+ {
+  "flows": [
+   -1,
+   100
+  ],
+  "irr": {
+   "kind": "None",
+   "reason": "OutOfRange"
+  },
+  "npv_at_10pct": 89.9090909090909,
+  "note": "9 900 %: outside the scan range -> None(OutOfRange)"
+ },
+ {
+  "flows": [
+   -100,
+   2
+  ],
+  "irr": {
+   "kind": "Unique",
+   "rate": -0.98
+  },
+  "npv_at_10pct": -98.18181818181819,
+  "note": "-98 %"
+ },
+ {
+  "flows": [
+   0,
+   -100,
+   0,
+   121
+  ],
+  "irr": {
+   "kind": "Unique",
+   "rate": 0.1
+  },
+  "npv_at_10pct": -2.842170943040401e-14,
+  "note": "leading zero flow: 10 %"
+ }
+]

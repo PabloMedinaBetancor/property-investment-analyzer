@@ -1,0 +1,7 @@
+/target/
+/node_modules/
+/dist/
+/src/engine/invest_engine.wasm
+*.log
+.DS_Store
+__pycache__/

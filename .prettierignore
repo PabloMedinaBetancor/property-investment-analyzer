@@ -1,0 +1,7 @@
+dist
+target
+node_modules
+package-lock.json
+tests/fixtures
+engine/tests/golden
+data

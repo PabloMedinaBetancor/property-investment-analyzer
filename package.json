@@ -1,0 +1,47 @@
+{
+  "name": "property-investment-analyzer",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build:wasm": "node tools/build-wasm.mjs",
+    "dev": "vite",
+    "build": "npm run build:wasm && tsc --noEmit && vite build",
+    "test": "node tools/build-wasm.mjs --if-missing && vitest run",
+    "lint": "eslint . && prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "e2e": "vite preview --port 4173 --strictPort & PREVIEW=$!; sleep 2; node tools/e2e-smoke.mjs; STATUS=$?; kill $PREVIEW; exit $STATUS",
+    "bench:headless": "node tools/bench-headless.mjs",
+    "screenshots": "node tools/screenshots.mjs"
+  },
+  "dependencies": {
+    "d3-scale": "4.0.2",
+    "d3-shape": "3.2.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@testing-library/dom": "10.4.2",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.7",
+    "@types/d3-scale": "4.0.9",
+    "@types/d3-shape": "3.2.0",
+    "@types/node": "26.6.4",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "4.7.0",
+    "eslint": "10.11.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.13.0",
+    "jsdom": "30.1.1",
+    "prettier": "3.9.9",
+    "puppeteer-core": "25.12.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.0",
+    "vite": "6.4.3",
+    "vitest": "5.0.3"
+  }
+}

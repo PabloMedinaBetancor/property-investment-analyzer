@@ -1,0 +1,93 @@
+.metric-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space);
+  margin: 0;
+}
+
+.metric-card {
+  padding: calc(var(--space) * 1.5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.metric-card dt {
+  color: var(--muted);
+}
+
+.metric-card dd {
+  margin: 0;
+}
+
+.metric-value {
+  margin-top: 4px;
+  font-size: 1.4rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric-card .metric-text {
+  font-size: 0.87rem;
+}
+
+.metric-definition {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.results-table caption {
+  padding: var(--space);
+  text-align: left;
+  font-weight: 600;
+}
+
+.results-table th,
+.results-table td {
+  padding: 4px var(--space);
+  border-top: 1px solid var(--border);
+  white-space: nowrap;
+  text-align: left;
+}
+
+.results-table .num {
+  text-align: right;
+}
+
+.results-table .total th,
+.results-table .total td {
+  font-weight: 600;
+  border-top-width: 2px;
+}
+
+.pos {
+  color: var(--pos);
+}
+
+.neg {
+  color: var(--neg);
+}
+
+.toggle {
+  margin-bottom: var(--space);
+  padding: 4px calc(var(--space) * 1.5);
+  font: inherit;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}

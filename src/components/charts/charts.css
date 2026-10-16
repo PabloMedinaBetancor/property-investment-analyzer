@@ -1,0 +1,170 @@
+.chart {
+  margin: 0 0 calc(var(--space) * 2);
+  padding: calc(var(--space) * 1.5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.chart figcaption {
+  margin-bottom: var(--space);
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+.chart-box {
+  width: 100%;
+}
+
+.chart svg {
+  display: block;
+  max-width: 100%;
+  font-family: var(--font);
+}
+
+.chart .tick {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.chart .label {
+  fill: var(--text);
+  font-size: 12px;
+}
+
+.chart .note {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.chart .grid {
+  stroke: var(--border);
+  stroke-width: 1;
+  opacity: 0.6;
+}
+
+.chart .axis-line {
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+.chart .mark-pos,
+.chart .swatch.mark-pos {
+  fill: var(--accent);
+  background: var(--accent);
+}
+
+.chart .mark-neg,
+.chart .swatch.mark-neg {
+  fill: var(--neg);
+  background: var(--neg);
+}
+
+.chart .mark-muted,
+.chart .swatch.mark-muted {
+  fill: var(--muted);
+  background: var(--muted);
+}
+
+.chart .mark-band,
+.chart .swatch.mark-band {
+  fill: var(--band);
+  background: var(--band);
+  border: 1px solid var(--accent);
+}
+
+.chart .line-accent {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+.chart .line-text {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.chart .line-base {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+
+.chart .dot {
+  fill: var(--surface);
+  stroke: var(--text);
+  stroke-width: 2;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space) calc(var(--space) * 2);
+  margin: 0 0 var(--space);
+  padding: 0;
+  list-style: none;
+  font-size: 0.93rem;
+}
+
+.legend li {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.legend .swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  vertical-align: -1px;
+  border-radius: 2px;
+}
+
+.legend .swatch.line-text,
+.legend .swatch.line-base {
+  height: 0;
+  border-radius: 0;
+  border-top: 2px solid var(--text);
+  background: none;
+}
+
+.legend .swatch.line-base {
+  border-top: 2px dashed var(--muted);
+}
+
+.chart-toggle {
+  margin-top: var(--space);
+  padding: 2px var(--space);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.chart-table {
+  max-height: 360px;
+  overflow: auto;
+}
+
+.chart-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.chart-table th,
+.chart-table td {
+  padding: 4px var(--space);
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+}
+
+.chart-table th:first-child,
+.chart-table td:first-child {
+  text-align: left;
+}
+.chart-note {
+  margin: var(--space) 0 0;
+  font-size: 0.93rem;
+}

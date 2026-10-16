@@ -1,0 +1,124 @@
+.input-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space);
+}
+
+.form-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.form-section > summary,
+.advanced > summary {
+  padding: var(--space) calc(var(--space) * 1.5);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.section-fields {
+  display: grid;
+  gap: calc(var(--space) * 1.5);
+  padding: 0 calc(var(--space) * 1.5) calc(var(--space) * 1.5);
+}
+
+.advanced {
+  display: grid;
+  gap: calc(var(--space) * 1.5);
+}
+
+.advanced > summary {
+  padding-left: 0;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.field-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space);
+}
+
+.field label {
+  font-size: 0.93rem;
+}
+
+.field-body {
+  display: flex;
+  align-items: center;
+  gap: var(--space);
+  margin-top: 2px;
+}
+
+.field input[type='text'],
+.field select {
+  flex: 1 1 0;
+  width: 100%;
+  min-width: 0;
+  padding: 4px var(--space);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.field input[type='text'] {
+  text-align: right;
+}
+
+.field input[type='text'].words {
+  text-align: left;
+}
+
+.field input[aria-invalid='true'],
+.field select[aria-invalid='true'] {
+  border-color: var(--neg);
+}
+
+.unit {
+  flex: 0 0 auto;
+  min-width: 4.5rem;
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+.help-toggle {
+  /* WCAG 2.2 asks for 24 px at least; a finger needs more. */
+  width: 1.5rem;
+  height: 1.5rem;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.help,
+.note {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+.error {
+  margin: 4px 0 0;
+  color: var(--neg);
+  font-size: 0.87rem;
+}
+
+.field input[type='checkbox'] {
+  width: 24px;
+  height: 24px;
+}
+
+@media (pointer: coarse) {
+  .help-toggle {
+    min-width: 32px;
+    min-height: 32px;
+  }
+}

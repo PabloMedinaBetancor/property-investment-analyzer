@@ -1,0 +1,14 @@
+[
+ {
+  "rate": 0.1,
+  "flows_t0_first": [
+   -10000,
+   3000,
+   4200,
+   6800
+  ],
+  "npv": 1307.287753568743,
+  "excel_npv_function_gives": 1188.4434123352207,
+  "note": "our NPV does not discount t0; Excel NPV() discounts the first value (1 188.44)"
+ }
+]

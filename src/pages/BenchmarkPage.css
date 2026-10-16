@@ -1,0 +1,122 @@
+.bench {
+  display: grid;
+  gap: var(--space);
+  max-width: 880px;
+}
+
+.bench p {
+  margin: 0;
+}
+
+.bench-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: calc(var(--space) * 2);
+}
+
+.bench-controls label {
+  display: grid;
+  gap: 4px;
+}
+
+.bench select,
+.bench button {
+  padding: 4px var(--space);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.bench .bench-run {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.bench button:disabled,
+.bench select:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.bench-note {
+  color: var(--muted);
+  font-size: 0.93rem;
+}
+
+.bench-block {
+  display: grid;
+  gap: var(--space);
+  padding: calc(var(--space) * 1.5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.bench-block h3 {
+  margin: 0;
+}
+
+.bench-ok::before {
+  content: '✓ ';
+  color: var(--pos);
+}
+
+.bench-bad {
+  color: var(--neg);
+}
+
+.bench-bad::before {
+  content: '✗ ';
+}
+
+.bench-table {
+  overflow-x: auto;
+}
+
+.bench-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bench-table th,
+.bench-table td {
+  padding: 4px var(--space);
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.bench-table th:first-child {
+  text-align: left;
+}
+
+.bench dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px calc(var(--space) * 2);
+  margin: 0;
+}
+
+.bench dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* The user-agent is long: below this width the name sits above its value instead of squeezing it. */
+@media (max-width: 480px) {
+  .bench dl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .bench dd {
+    margin-bottom: var(--space);
+  }
+}
+
+.bench-block button {
+  justify-self: start;
+}

@@ -1,0 +1,157 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.analyze-inputs,
+.analyze-results {
+  min-width: 0;
+}
+
+.analyze-grid {
+  display: grid;
+  gap: calc(var(--space) * 2);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .analyze-grid {
+    grid-template-columns: minmax(320px, 400px) minmax(0, 1fr);
+  }
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space) calc(var(--space) * 1.5);
+  margin-bottom: calc(var(--space) * 2);
+  padding: var(--space) calc(var(--space) * 1.5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.toolbar label {
+  max-width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.87rem;
+  color: var(--muted);
+}
+
+.toolbar select,
+.toolbar input {
+  padding: 4px var(--space);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+}
+
+.toolbar button {
+  padding: 4px calc(var(--space) * 1.5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.toolbar button:disabled {
+  color: var(--muted);
+  cursor: default;
+}
+
+.toolbar a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px var(--space);
+}
+
+.toolbar-status {
+  flex-basis: 100%;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+.notice {
+  margin: 0 0 calc(var(--space) * 2);
+  padding: var(--space) calc(var(--space) * 1.5);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.results-earlier {
+  opacity: 0.55;
+}
+
+.tabs [role='tablist'] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: calc(var(--space) * 2);
+}
+
+.tabs [role='tab'] {
+  padding: var(--space) calc(var(--space) * 1.5);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.tabs [role='tab'][aria-selected='true'] {
+  border-bottom-color: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.analyze-footer {
+  margin-top: calc(var(--space) * 4);
+  padding-top: var(--space);
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+.analyze-footer p {
+  margin: 0 0 4px;
+}
+
+.analyze-footer a {
+  margin-right: calc(var(--space) * 2);
+}
+
+/* Hidden until it has the keyboard focus, then the first thing on the page. */
+.skip-link {
+  position: absolute;
+  left: var(--space);
+  top: -100px;
+  z-index: 10;
+  padding: var(--space);
+  background: var(--surface);
+  color: var(--text);
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+}
+
+.skip-link:focus {
+  top: var(--space);
+}

@@ -1,0 +1,61 @@
+.app-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--space) * 2);
+  padding: var(--space) calc(var(--space) * 2);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.app-title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.app-nav {
+  display: flex;
+  gap: var(--space);
+}
+
+.app-nav a {
+  padding: 4px var(--space);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.app-nav a[aria-current='page'] {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: calc(var(--space) * 2);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.app-lang {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.app-lang button {
+  padding: 2px var(--space);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+}
+
+.app-lang button[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}

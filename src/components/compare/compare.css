@@ -1,0 +1,117 @@
+.compare-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: var(--space);
+}
+
+.compare-page > *,
+.compare-slot {
+  min-width: 0;
+}
+
+.compare-slot {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space);
+  padding: calc(var(--space) * 1.5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.compare-slot h3 {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.compare-slot-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space);
+}
+
+.compare-note {
+  display: block;
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+.compare-error {
+  margin: 0;
+  color: var(--neg);
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 4px var(--space);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.compare-table th {
+  white-space: normal;
+}
+
+.compare-table th:first-child {
+  text-align: left;
+  max-width: 16em;
+}
+
+/* Words, such as «No dentro de los años de tenencia», wrap; numbers stay on one line. */
+.compare-table .compare-text {
+  white-space: normal;
+}
+
+.better-mark {
+  margin-left: var(--space);
+  padding: 0 4px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+.compare-figure {
+  margin: 0;
+}
+
+.compare-figure svg {
+  width: 100%;
+  height: auto;
+}
+
+.compare-figure .tick {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(var(--space) * 2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legend svg {
+  width: 28px;
+  margin-right: var(--space);
+}
+
+.compare-drawer {
+  position: fixed;
+  inset: 0 0 0 auto;
+  z-index: 10;
+  width: min(480px, 100%);
+  overflow-y: auto;
+  padding: calc(var(--space) * 2);
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+}
+
+.compare-page {
+  display: grid;
+  gap: calc(var(--space) * 3);
+}

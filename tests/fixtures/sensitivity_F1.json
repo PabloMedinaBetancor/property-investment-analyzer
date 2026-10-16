@@ -1,0 +1,157 @@
+{
+ "inputs": {
+  "name": "F1 fictional resale flat, Madrid, fixed loan, tax on",
+  "region": "MD",
+  "new_build": false,
+  "price": 180000,
+  "reference_value": null,
+  "manual_transfer_rate": null,
+  "notary_extras": 300,
+  "gestoria": 350,
+  "buyer_agency_rate": 0.0,
+  "loan_fees": 400,
+  "renovation": 15000,
+  "ltv": 0.7,
+  "loan": {
+   "kind": "fixed",
+   "fixed_rate": 0.032,
+   "term_years": 25
+  },
+  "rent_month": 950,
+  "vacancy": 0.05,
+  "ibi": 450,
+  "community": 720,
+  "insurance": 250,
+  "other_fixed": 0,
+  "maintenance_rate": 0.05,
+  "management_rate": 0.0,
+  "g_rent": 0.02,
+  "g_exp": 0.02,
+  "g_app": 0.02,
+  "years": 10,
+  "sell_rate": 0.05,
+  "municipal_gain_tax": 1500,
+  "discount_rate": 0.06,
+  "tax": {
+   "on": true,
+   "marginal": 0.37,
+   "reduction": 0.5,
+   "construction_share": 0.6,
+   "offset_other_income": true
+  }
+ },
+ "base": {
+  "npv": -5533.186682799329,
+  "irr": {
+   "kind": "Unique",
+   "rate": 0.051969857972
+  }
+ },
+ "bars": [
+  {
+   "variable": "appreciation",
+   "low_value": 0.0,
+   "high_value": 0.04,
+   "npv_low": -22161.494879872233,
+   "npv_high": 13819.064066685329,
+   "irr_low": {
+    "kind": "Unique",
+    "rate": 0.023666099826
+   },
+   "irr_high": {
+    "kind": "Unique",
+    "rate": 0.077893922883
+   }
+  },
+  {
+   "variable": "rent",
+   "low_value": 855.0,
+   "high_value": 1045.0,
+   "npv_low": -12208.489002475253,
+   "npv_high": 1142.1156368766024,
+   "irr_low": {
+    "kind": "Unique",
+    "rate": 0.042298780096
+   },
+   "irr_high": {
+    "kind": "Unique",
+    "rate": 0.061659057182
+   }
+  },
+  {
+   "variable": "interest",
+   "low_value": 0.022,
+   "high_value": 0.042,
+   "npv_low": 553.9305841955647,
+   "npv_high": -11836.012951853365,
+   "irr_low": {
+    "kind": "Unique",
+    "rate": 0.060794694005
+   },
+   "irr_high": {
+    "kind": "Unique",
+    "rate": 0.042624900683
+   }
+  },
+  {
+   "variable": "price",
+   "low_value": 162000.0,
+   "high_value": 198000.00000000003,
+   "npv_low": -749.8615042596648,
+   "npv_high": -10316.51186133911,
+   "irr_low": {
+    "kind": "Unique",
+    "rate": 0.058806452145
+   },
+   "irr_high": {
+    "kind": "Unique",
+    "rate": 0.046244098208
+   }
+  },
+  {
+   "variable": "vacancy",
+   "low_value": 0.0,
+   "high_value": 0.1,
+   "npv_low": -1824.6853940904766,
+   "npv_high": -9241.687971508189,
+   "irr_low": {
+    "kind": "Unique",
+    "rate": 0.057350521401
+   },
+   "irr_high": {
+    "kind": "Unique",
+    "rate": 0.046594788039
+   }
+  },
+  {
+   "variable": "rent_growth",
+   "low_value": 0.01,
+   "high_value": 0.03,
+   "npv_low": -8203.15452735917,
+   "npv_high": -2725.2046174780407,
+   "irr_low": {
+    "kind": "Unique",
+    "rate": 0.048014293054
+   },
+   "irr_high": {
+    "kind": "Unique",
+    "rate": 0.056073451595
+   }
+  },
+  {
+   "variable": "opex",
+   "low_value": 0.8,
+   "high_value": 1.2,
+   "npv_low": -2943.7419233148903,
+   "npv_high": -8122.631442283746,
+   "irr_low": {
+    "kind": "Unique",
+    "rate": 0.055726295276
+   },
+   "irr_high": {
+    "kind": "Unique",
+    "rate": 0.048216147815
+   }
+  }
+ ]
+}

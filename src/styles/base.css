@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 15px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 var(--space);
+  line-height: 1.25;
+}
+
+a {
+  color: var(--accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+/* A long option text would otherwise set the width of every box around it. */
+select {
+  max-width: 100%;
+}
+
+/* Not `disabled`: a disabled button that has focus drops it to the page. */
+button[aria-disabled='true'] {
+  color: var(--muted);
+  cursor: default;
+}
