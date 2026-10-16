@@ -4,10 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
-    <link rel="icon" href="data:," />
+    <meta name="theme-color" content="#f6f7f8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14181b" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="description"
+      content="A browser app that works out whether a rental property pays: cash flow, investor metrics, loan schedule, sensitivity and a Monte Carlo simulation, all in your browser."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Property Investment Analyzer" />
+    <meta
+      property="og:description"
+      content="A browser app that works out whether a rental property pays: cash flow, investor metrics, loan schedule, sensitivity and a Monte Carlo simulation, all in your browser."
+    />
+    <meta
+      property="og:url"
+      content="https://pablomedinabetancor.github.io/property-investment-analyzer/"
+    />
+    <meta
+      property="og:image"
+      content="https://pablomedinabetancor.github.io/property-investment-analyzer/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Property Investment Analyzer" />
+    <meta
+      name="twitter:description"
+      content="A browser app that works out whether a rental property pays: cash flow, investor metrics, loan schedule, sensitivity and a Monte Carlo simulation, all in your browser."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pablomedinabetancor.github.io/property-investment-analyzer/og-image.png"
+    />
     <title>Property Investment Analyzer</title>
   </head>
   <body>
+    <noscript
+      >Property Investment Analyzer needs JavaScript to run. Please turn it on in your
+      browser.</noscript
+    >
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
