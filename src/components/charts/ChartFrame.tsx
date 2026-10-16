@@ -63,18 +63,20 @@ export function ChartFrame({ caption, label, legend, table, height, note, childr
             <table>
               <thead>
                 <tr>
-                  {table.head.map((h) => (
-                    <th key={h} scope="col">
+                  {table.head.map((h, i) => (
+                    // The tables are static: the position is the identity.
+                    <th key={i} scope="col">
                       {h}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {table.rows.map((row) => (
-                  <tr key={row[0]}>
+                {table.rows.map((row, r) => (
+                  // Rows may start with the same value (the histogram's bins do when all scenarios agree).
+                  <tr key={r}>
                     {row.map((cell, i) => (
-                      <td key={table.head[i]}>{cell}</td>
+                      <td key={i}>{cell}</td>
                     ))}
                   </tr>
                 ))}

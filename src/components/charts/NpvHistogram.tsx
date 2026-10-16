@@ -15,6 +15,16 @@ export function NpvHistogram({ mc, currency }: { mc: McResult; currency: string 
   const { edges, counts, below, above } = mc.npv_histogram;
   const first = edges[0] ?? 0;
   const last = edges[edges.length - 1] ?? 0;
+  // All scenarios at one value (no randomness, or one to three scenarios): the engine's bins have no width, so the
+  // whole count is drawn as one bar around that value.
+  const single = last - first < 0.01;
+  const pad = Math.max(Math.abs(first) * 0.1, 1);
+  const lo0 = single ? first - pad : first;
+  const hi0 = single ? first + pad : last;
+  const total = counts.reduce((a, b) => a + b, 0);
+  const bars = single
+    ? [{ lo: first - pad / 4, hi: first + pad / 4, count: total }]
+    : counts.map((count, i) => ({ lo: edges[i] ?? 0, hi: edges[i + 1] ?? 0, count }));
   const vars = { below: f.number(below, 0), above: f.number(above, 0) };
 
   return (
@@ -37,15 +47,19 @@ export function NpvHistogram({ mc, currency }: { mc: McResult; currency: string 
     >
       {(width) => {
         const x = scaleLinear()
-          .domain([first, last])
+          .domain([lo0, hi0])
           .range([MARGIN.left, width - MARGIN.right]);
         const y = scaleLinear()
-          .domain([0, Math.max(...counts, 1)])
+          .domain([0, Math.max(...bars.map((bar) => bar.count), 1)])
           .nice(5)
           .range([HEIGHT - MARGIN.bottom, MARGIN.top]);
-        const ticks = x
-          .ticks(tickCount(width - MARGIN.left - MARGIN.right))
-          .map((v) => ({ pos: x(v), label: compact(v, locale) }));
+        // One tick at the value when there is no spread; elsewhere, compact labels that repeat are dropped.
+        const ticks = single
+          ? [{ pos: x(first), label: f.money(first, currency) }]
+          : x
+              .ticks(tickCount(width - MARGIN.left - MARGIN.right))
+              .map((v) => ({ pos: x(v), label: compact(v, locale) }))
+              .filter((tick, i, all) => tick.label !== all[i - 1]?.label);
         return (
           <>
             <AxisY
@@ -53,6 +67,7 @@ export function NpvHistogram({ mc, currency }: { mc: McResult; currency: string 
               x0={MARGIN.left}
               x1={width - MARGIN.right}
               format={(v) => f.number(v, 0)}
+              integers
             />
             <AxisX
               y={HEIGHT - MARGIN.bottom}
@@ -60,23 +75,19 @@ export function NpvHistogram({ mc, currency }: { mc: McResult; currency: string 
               x1={width - MARGIN.right}
               ticks={ticks}
             />
-            {counts.map((count, i) => {
-              const lo = edges[i] ?? 0;
-              const hi = edges[i + 1] ?? 0;
-              return (
-                <rect
-                  key={lo}
-                  className={`bar ${hi <= 0 ? 'mark-neg' : 'mark-pos'}`}
-                  x={x(lo) + 0.5}
-                  width={Math.max(0, x(hi) - x(lo) - 1)}
-                  y={y(count)}
-                  height={y(0) - y(count)}
-                >
-                  <title>{`${f.money(lo, currency)} – ${f.money(hi, currency)}: ${f.number(count, 0)}`}</title>
-                </rect>
-              );
-            })}
-            {first < 0 && last > 0 && (
+            {bars.map(({ lo, hi, count }, i) => (
+              <rect
+                key={i}
+                className={`bar ${hi <= 0 ? 'mark-neg' : 'mark-pos'}`}
+                x={x(lo) + 0.5}
+                width={Math.max(0, x(hi) - x(lo) - 1)}
+                y={y(count)}
+                height={y(0) - y(count)}
+              >
+                <title>{`${single ? f.money(first, currency) : `${f.money(lo, currency)} – ${f.money(hi, currency)}`}: ${f.number(count, 0)}`}</title>
+              </rect>
+            ))}
+            {lo0 < 0 && hi0 > 0 && (
               <g>
                 <line
                   className="line-base"

@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import type { Analysis, McResult, Sensitivity } from '../../engine/types';
 import { LocaleProvider } from '../../i18n';
 import { CashFlowChart } from './CashFlowChart';
@@ -101,6 +101,67 @@ describe('NpvHistogram', () => {
     expect(screen.getByRole('img').getAttribute('aria-label')).toBe(
       `Histogram of NPV; ${String(below)} scenarios below the range, ${String(above)} above.`,
     );
+  });
+});
+
+// Every scenario has the same NPV (all volatilities and the vacancy at 0, or one to three scenarios).
+function sameForAll(scenarios: number): McResult {
+  const value = -1825.4;
+  return {
+    ...mcF1,
+    npv_p: [value, value, value],
+    irr_p: [0.057, 0.057, 0.057],
+    npv_histogram: {
+      edges: Array.from({ length: 31 }, () => value),
+      counts: [scenarios, ...Array.from({ length: 29 }, () => 0)],
+      below: 0,
+      above: 0,
+    },
+  };
+}
+
+describe('when every scenario has the same NPV', () => {
+  it.each([10000, 3, 1])('the histogram draws one visible bar for %i scenarios', (n) => {
+    const { container } = inEnglish(<NpvHistogram mc={sameForAll(n)} currency="EUR" />);
+    const bars = [...container.querySelectorAll('rect.bar')];
+    const drawn = bars.filter(
+      (bar) => Number(bar.getAttribute('width')) > 1 && Number(bar.getAttribute('height')) > 1,
+    );
+    expect(drawn).toHaveLength(1);
+    expect(drawn[0]?.textContent).toMatch(new RegExp(`: ${n.toLocaleString('en')}$`));
+  });
+
+  it('the y axis labels are whole numbers, none repeated', () => {
+    const { container } = inEnglish(<NpvHistogram mc={sameForAll(3)} currency="EUR" />);
+    const labels = [...container.querySelectorAll('.axis')][0]?.querySelectorAll('text.tick');
+    const texts = [...(labels ?? [])].map((x) => x.textContent);
+    expect(texts.length).toBeGreaterThan(1);
+    expect(new Set(texts).size).toBe(texts.length);
+    for (const text of texts) expect(text).toMatch(/^\d+$/);
+  });
+
+  it('the x axis labels are not repeated', () => {
+    const { container } = inEnglish(<NpvHistogram mc={sameForAll(10000)} currency="EUR" />);
+    const texts = [...container.querySelectorAll('.axis')][1]?.querySelectorAll('text.tick') ?? [];
+    const labels = [...texts].map((x) => x.textContent);
+    expect(new Set(labels).size).toBe(labels.length);
+  });
+
+  it('the percentile strip says each value once, under one set of names', () => {
+    const { container } = inEnglish(<PercentileStrip mc={sameForAll(10000)} currency="EUR" />);
+    expect(screen.getAllByText(/^[-−]€1,825$/)).toHaveLength(1);
+    expect(screen.getAllByText('5.7 %')).toHaveLength(1);
+    expect(container.querySelectorAll('text.tick')).toHaveLength(2);
+    expect(container.querySelector('text.tick')?.textContent).toMatch(/P10.*P50.*P90/);
+  });
+
+  it('the tables render without duplicate-key warnings', () => {
+    const errors = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    inEnglish(<NpvHistogram mc={sameForAll(10000)} currency="EUR" />);
+    fireEvent.click(screen.getByRole('button', { name: 'Show as table' }));
+    expect(screen.getAllByRole('row')).toHaveLength(31);
+    expect(errors).not.toHaveBeenCalled();
+    errors.mockRestore();
   });
 });
 

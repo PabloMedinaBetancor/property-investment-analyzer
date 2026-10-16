@@ -2,6 +2,7 @@ import { scaleLinear } from 'd3-scale';
 import type { IrrPoint, McResult } from '../../engine/types';
 import { useFormat } from '../../i18n';
 import { ChartFrame } from './ChartFrame';
+import { edgeAnchor } from './scales';
 import { useChartT } from './useChartT';
 
 const ROW = 56;
@@ -81,9 +82,26 @@ export function PercentileStrip({ mc, currency }: { mc: McResult; currency: stri
             }
             const values = row.points.map((p) => p.value);
             const lo = Math.min(...values);
-            const x = scaleLinear()
+            const x0 = LEFT + 40;
+            const x1 = width - RIGHT - 40;
+            const scale = scaleLinear()
               .domain([lo, Math.max(...values, lo + 1e-9)])
-              .range([LEFT + 40, width - RIGHT - 40]);
+              .range([x0, x1]);
+            // With no spread the three points are one: the middle of the strip.
+            const x = (v: number) => (Math.max(...values) > lo ? scale(v) : (x0 + x1) / 2);
+            // Points that print the same value are one mark carrying all their names.
+            const marks = row.points.reduce<{ names: string[]; point: Point; median: boolean }[]>(
+              (all, p, i) => {
+                const last = all[all.length - 1];
+                const name = names[i] ?? '';
+                if (last && last.point.text === p.text) {
+                  last.names.push(name);
+                  last.median ||= i === 1;
+                } else all.push({ names: [name], point: p, median: i === 1 });
+                return all;
+              },
+              [],
+            );
             return (
               <g key={row.name}>
                 <text className="label" x={0} y={mid} dy="0.32em">
@@ -96,24 +114,28 @@ export function PercentileStrip({ mc, currency }: { mc: McResult; currency: stri
                   y1={mid}
                   y2={mid}
                 />
-                {row.points.map((p, i) => (
-                  <g key={names[i]}>
-                    <circle
-                      className={i === 1 ? 'mark-pos' : 'dot'}
-                      cx={x(p.value)}
-                      cy={mid}
-                      r={i === 1 ? 6 : 4.5}
-                    >
-                      <title>{`${names[i] ?? ''}: ${p.text}`}</title>
-                    </circle>
-                    <text className="tick" x={x(p.value)} y={mid - 14} textAnchor="middle">
-                      {names[i]}
-                    </text>
-                    <text className="label" x={x(p.value)} y={mid + 20} textAnchor="middle">
-                      {p.text}
-                    </text>
-                  </g>
-                ))}
+                {marks.map(({ names: group, point: p, median }) => {
+                  const name = group.join(' · ');
+                  const anchor = group.length > 1 ? edgeAnchor(x(p.value), x0, x1) : 'middle';
+                  return (
+                    <g key={name}>
+                      <circle
+                        className={median ? 'mark-pos' : 'dot'}
+                        cx={x(p.value)}
+                        cy={mid}
+                        r={median ? 6 : 4.5}
+                      >
+                        <title>{`${name}: ${p.text}`}</title>
+                      </circle>
+                      <text className="tick" x={x(p.value)} y={mid - 14} textAnchor={anchor}>
+                        {name}
+                      </text>
+                      <text className="label" x={x(p.value)} y={mid + 20} textAnchor={anchor}>
+                        {p.text}
+                      </text>
+                    </g>
+                  );
+                })}
               </g>
             );
           })}
