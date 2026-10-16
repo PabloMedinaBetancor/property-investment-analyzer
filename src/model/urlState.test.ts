@@ -75,6 +75,13 @@ function randomInputs(next: () => number): Inputs {
   return changed;
 }
 
+function toBase64Url(text: string): string {
+  return btoa(String.fromCharCode(...new TextEncoder().encode(text)))
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/, '');
+}
+
 describe('urlState', () => {
   it.each(examples)('round trip is exact for the example $id', ({ inputs }) => {
     expect(decode(encode(inputs))).toEqual({ inputs });
@@ -114,6 +121,41 @@ describe('urlState', () => {
     ['a loan that is a number', `1.${btoa('{"profile":"es","loan":5}')}`],
   ])('%s gives a payload error', (_what, text) => {
     expect(decode(text)).toEqual({ error: 'payload' });
+  });
+
+  // A name or starting value of the wrong type used to get through and crash Compare (a React child) and Save (.trim).
+  it.each([
+    ['a name that is an object', { name: {} }],
+    ['a name that is a number', { name: 5 }],
+    ['a name that is a list', { name: ['a'] }],
+    ['a name that is true', { name: true }],
+    ['a name that is null', { name: null }],
+    ['a starting value that is text', { value0: 'x' }],
+    ['a starting value that is an object', { value0: {} }],
+    ['a starting value that is true', { value0: true }],
+    ['a field of the loan that is text', { loan: { kind: 'fixed', fixed_rate: 'x' } }],
+    ['a field of the tax that is text', { tax: { on: true, marginal: 'x' } }],
+    ['a flag of the tax that is a number', { tax: { on: true, offset_other_income: 1 } }],
+    ['an unknown key in the tax', { tax: { on: true, salary: -1 } }],
+    ['an unknown key in the loan', { loan: { kind: 'fixed', colour: 1 } }],
+    ['an unknown key in the purchase', { profile: 'generic', purchase: { colour: 1 } }],
+    [
+      'a field of the purchase that is text',
+      { profile: 'generic', purchase: { closing_cost_fixed: 'x' } },
+    ],
+    ['a name that is not well formed', { name: '\ud800' }],
+  ])('%s gives a payload error', (_what, changes) => {
+    const text = `1.${toBase64Url(JSON.stringify({ profile: 'es', ...changes }))}`;
+    expect(decode(text)).toEqual({ error: 'payload' });
+  });
+
+  it.each([
+    ['a name and a starting value', { name: 'Flat é ñ 😀', value0: 250000 }],
+    ['a starting value that is null', { value0: null }],
+    ["a tax with the other profile's fields", { tax: { on: true, rate: 0.2, marginal: 0.3 } }],
+  ])('%s still reads', (_what, changes) => {
+    const text = `1.${toBase64Url(JSON.stringify({ profile: 'es', ...changes }))}`;
+    expect(decode(text)).toHaveProperty('inputs');
   });
 
   it('text without a version dot gives a version error', () => {

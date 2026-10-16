@@ -31,6 +31,54 @@ function sameKind(value: unknown, base: unknown): boolean {
   return typeof value === typeof base && Array.isArray(value) === Array.isArray(base);
 }
 
+// What the nested objects may carry, by the type of each field (the engine refuses anything else). `index_path` is
+// checked on its own, and the tax holds the fields of both profiles because the other profile's are ignored.
+type FieldType = 'number' | 'boolean' | 'string';
+const LOAN_FIELDS: Record<string, FieldType> = {
+  kind: 'string',
+  fixed_rate: 'number',
+  fixed_years: 'number',
+  spread: 'number',
+  index: 'number',
+  term_years: 'number',
+};
+const TAX_FIELDS: Record<string, FieldType> = {
+  on: 'boolean',
+  marginal: 'number',
+  reduction: 'number',
+  construction_share: 'number',
+  offset_other_income: 'boolean',
+  rate: 'number',
+  interest_deductible: 'boolean',
+  depreciation_years: 'number',
+  building_share: 'number',
+  offset_losses: 'boolean',
+  capital_gains_rate: 'number',
+  depreciation_recapture_rate: 'number',
+};
+const PURCHASE_FIELDS: Record<string, FieldType> = {
+  transfer_tax_rate: 'number',
+  closing_cost_rate: 'number',
+  closing_cost_fixed: 'number',
+  buyer_agency_rate: 'number',
+};
+
+function hasOnlyKnownFields(value: Json, fields: Record<string, FieldType>): boolean {
+  return Object.entries(value).every(
+    ([key, item]) =>
+      key === 'index_path' || (Object.hasOwn(fields, key) && typeof item === fields[key]),
+  );
+}
+
+// A lone surrogate (JSON `\ud800`) is legal in a JSON.parse string but not in the engine's.
+const LONE_SURROGATE = /[\ud800-\udbff](?![\udc00-\udfff])|(?<![\ud800-\udbff])[\udc00-\udfff]/;
+
+function wellFormedStrings(value: unknown): boolean {
+  if (typeof value === 'string') return !LONE_SURROGATE.test(value);
+  if (Array.isArray(value)) return value.every(wellFormedStrings);
+  return !isObject(value) || Object.values(value).every(wellFormedStrings);
+}
+
 // A structural check only: ranges are validate.ts's job, but nothing the form or the worker would trip over.
 export function isInputs(value: unknown): value is Inputs {
   if (!isObject(value)) return false;
@@ -45,12 +93,23 @@ export function isInputs(value: unknown): value is Inputs {
   const { currency, loan, tax } = value;
   if (currency !== undefined && !(typeof currency === 'string' && /^[A-Z]{3}$/.test(currency)))
     return false;
+  // The label is rendered and trimmed, the starting value is a number or an empty one.
+  const { name, value0 } = value;
+  if (name !== undefined && typeof name !== 'string') return false;
+  if (value0 !== undefined && value0 !== null && typeof value0 !== 'number') return false;
   if (!isObject(loan) || !LOAN_KINDS.includes(loan['kind'] as string)) return false;
   const path = loan['index_path'];
   if (path !== undefined && !(Array.isArray(path) && path.every((x) => typeof x === 'number')))
     return false;
   if (!isObject(tax) || typeof tax['on'] !== 'boolean') return false;
-  return value['purchase'] === undefined || isObject(value['purchase']);
+  const purchase = value['purchase'];
+  return (
+    (purchase === undefined || isObject(purchase)) &&
+    hasOnlyKnownFields(loan, LOAN_FIELDS) &&
+    hasOnlyKnownFields(tax, TAX_FIELDS) &&
+    (purchase === undefined || hasOnlyKnownFields(purchase, PURCHASE_FIELDS)) &&
+    wellFormedStrings(value)
+  );
 }
 
 function toBase64Url(text: string): string {

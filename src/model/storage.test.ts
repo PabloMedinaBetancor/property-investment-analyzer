@@ -62,6 +62,20 @@ describe('storage', () => {
     expect(listScenarios()).toEqual([]);
   });
 
+  it('drops a saved scenario whose inputs carry a name or starting value of the wrong type', () => {
+    const entry = (inputs: object) => ({ name: 'x', saved_at: '2026-01-01T00:00:00Z', inputs });
+    window.localStorage.setItem(
+      'pia.scenarios.v1',
+      JSON.stringify([
+        entry({ ...madrid, name: {} }),
+        entry({ ...madrid, name: 5 }),
+        entry({ ...madrid, value0: 'x' }),
+        entry({ ...madrid, name: 'Fine', value0: 100000 }),
+      ]),
+    );
+    expect(listScenarios().map((s) => s.inputs.name)).toEqual(['Fine']);
+  });
+
   it('remembers the language and ignores other values', () => {
     expect(getLang()).toBeNull();
     setLang('es');
